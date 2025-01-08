@@ -2,9 +2,9 @@
 #language: es
 
 Característica: Manejar y gestionar problemas urbanos
-    Como entidad publica,
-    quiero clasificar , priorizar y gestionar los problemas reportados por los ciudadanos,
-    para asignar recursos de manera eficiente y solucionar los problemas en el menor tiempo posible
+  Como entidad publica,
+  quiero clasificar , priorizar y gestionar los problemas reportados por los ciudadanos,
+  para asignar recursos de manera eficiente y solucionar los problemas en el menor tiempo posible
 
   #Estados de los reportes
   #Clasificando
@@ -23,11 +23,11 @@ Característica: Manejar y gestionar problemas urbanos
     Y se asigna al departamento "<departamento>"
 
     Ejemplos:
-      | descripcion_reporte         | departamento       | confianza |
-      | Bache en la calle           | Obras Públicas     | 95        |
-      | Luminaria pública dañada    | Alumbrado Público  | 90        |
-      | Acumulación de basura       | Limpieza Pública   | 85        |
-      | Árbol caído                 | Parques y Jardines | 92        |
+      | descripcion_reporte      | departamento       | confianza |
+      | Bache en la calle        | Obras Públicas     | 95        |
+      | Luminaria pública dañada | Alumbrado Público  | 90        |
+      | Acumulación de basura    | Limpieza Pública   | 85        |
+      | Árbol caído              | Parques y Jardines | 92        |
 
   Esquema del escenario: Fallo en clasificación automática
     Dado un nuevo reporte ciudadano del problema "<descripcion_reporte>"
@@ -49,10 +49,10 @@ Característica: Manejar y gestionar problemas urbanos
     Y se añaden los nuevos criterios de clasificación
 
     Ejemplos:
-      | departamento          | justificacion                               |
-      | Fiscalización         | Requiere inspección por licencia comercial  |
-      | Seguridad Ciudadana   | Necesita patrullaje y monitoreo             |
-      | Desarrollo Social     | Caso requiere evaluación social             |
+      | departamento        | justificacion                              |
+      | Fiscalización       | Requiere inspección por licencia comercial |
+      | Seguridad Ciudadana | Necesita patrullaje y monitoreo            |
+      | Desarrollo Social   | Caso requiere evaluación social            |
 
 #-------- Atencion al problema --------
   Esquema del escenario: Inicio de atención del problema
@@ -61,10 +61,10 @@ Característica: Manejar y gestionar problemas urbanos
     Entonces el reporte cambia a "resolviendo"
 
     Ejemplos:
-      | departamento       |
-      | Obras Públicas     |
-      | Alumbrado Público  |
-      | Limpieza Pública   |
+      | departamento      |
+      | Obras Públicas    |
+      | Alumbrado Público |
+      | Limpieza Pública  |
 
   Esquema del escenario: Postergación de atención
     Dado un reporte "asignado"
@@ -74,10 +74,10 @@ Característica: Manejar y gestionar problemas urbanos
     Y el departamento establece una fecha estimada "<fecha_estimada>" para atender el reporte
 
     Ejemplos:
-      | departamento      | motivo                           | fecha_estimada|
-      | Obras Públicas    | Maquinaria en mantenimiento      | 3 días        |
-      | Parques y Jardines| Personal en emergencia climática | 2 días        |
-      | Limpieza Pública  | Camiones en otra zona prioritaria| 1 día         |
+      | departamento       | motivo                            | fecha_estimada |
+      | Obras Públicas     | Maquinaria en mantenimiento       | 3 días         |
+      | Parques y Jardines | Personal en emergencia climática  | 2 días         |
+      | Limpieza Pública   | Camiones en otra zona prioritaria | 1 día          |
 
   Esquema del escenario: Retomar problema postergado
     Dado un reporte "postergado"
@@ -92,18 +92,18 @@ Característica: Manejar y gestionar problemas urbanos
   Esquema del escenario: Resolución del problema ciudadano
     Dado un reporte en "resolviendo"
     Cuando el personal municipal registra:
-      | acción realizada  | "<accion>"     |
-      | evidencia         | "<evidencia>"   |
-      | tiempo empleado   | "<tiempo>"      |
+      | acción realizada | "<accion>"    |
+      | evidencia        | "<evidencia>" |
+      | tiempo empleado  | "<tiempo>"    |
     Y adjunta fotos del trabajo realizado
     Entonces el reporte cambia a "solucionado"
     Y se solicita confirmación al ciudadano
 
     Ejemplos:
-      | accion                    | evidencia                | tiempo    |
-      | Reparación de bache      | Fotos antes y después    | 5 horas   |
-      | Recolección de residuos  | Foto área limpia         | 45 min    |
-      | Poda de árbol            | Fotos del trabajo        | 2 horas   |
+      | accion                  | evidencia             | tiempo  |
+      | Reparación de bache     | Fotos antes y después | 5 horas |
+      | Recolección de residuos | Foto área limpia      | 45 min  |
+      | Poda de árbol           | Fotos del trabajo     | 2 horas |
 
   Esquema del escenario: Reapertura de reporte ciudadano
     Dado un reporte "solucionado"
@@ -113,7 +113,7 @@ Característica: Manejar y gestionar problemas urbanos
     Entonces el reporte vuelve a "clasificando"
 
     Ejemplos:
-      | evidencia              | descripcion                              |
-      | Foto de bache         | La reparación del bache se está hundiendo |
-      | Foto de luminaria     | La luz volvió a apagarse                  |
-      | Foto de basura        | Siguen acumulando basura en el punto      |
+      | evidencia         | descripcion                               |
+      | Foto de bache     | La reparación del bache se está hundiendo |
+      | Foto de luminaria | La luz volvió a apagarse                  |
+      | Foto de basura    | Siguen acumulando basura en el punto      |
