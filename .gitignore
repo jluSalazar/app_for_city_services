@@ -1,0 +1,26 @@
+# Ignorar configuración específica de PyCharm
+.idea/
+
+# Ignorar archivos de Python
+__pycache__/
+*.py[cod]
+
+# Ignorar archivos de entorno virtual
+venv/
+env/
+
+# Ignorar archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de logs
+*.log
+
+# Ignorar archivos temporales
+*.tmp
+*.swp
+*.bak
+
+# Ignorar resultados de pruebas
+*.coverage
+*.pytest_cache/
