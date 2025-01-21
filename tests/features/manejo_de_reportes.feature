@@ -16,7 +16,7 @@ Característica: Manejar y gestionar problemas urbanos
 
   #---------- Clasificacion a Departamentos ----------
   Esquema del escenario: Clasificación automática de reporte ciudadano
-    Dado un nuevo reporte ciudadano del problema"<descripcion_reporte>"
+    Dado un nuevo reporte ciudadano del problema "<descripcion_reporte>"
     Cuando el sistema encuentra coincidencias con el departamento "<departamento>"
     Y el nivel de confianza "<confianza>"% es mayor que 80%
     Entonces el reporte se clasifica como "asignado"
@@ -33,7 +33,6 @@ Característica: Manejar y gestionar problemas urbanos
     Dado un nuevo reporte ciudadano del problema "<descripcion_reporte>"
     Cuando el sistema no puede determinar el departamento responsable ya que el nivel de confianza es menor a 80%
     Entonces el reporte se marca como "noAsignado"
-    Y requiere revisión del departamento de quejas
 
     Ejemplos:
       | descripcion_reporte               |
