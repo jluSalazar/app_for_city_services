@@ -1,10 +1,35 @@
 #Created by jona
 #language: es
 
-Característica: Manejar y gestionar problemas urbanos
-  Como entidad publica,
-  quiero clasificar , priorizar y gestionar los problemas reportados por los ciudadanos,
-  para asignar recursos de manera eficiente y solucionar los problemas en el menor tiempo posible
+Característica: Manejar los reportes ciudadanos
+    Como entidad publica,
+    quiero clasificar, atender y posponer los reportes enviados por los ciudadanos,
+    para asignar recursos de manera eficiente y solucionar los problemas en el menor tiempo posible.
+
+    #Estados de los reportes
+        # no_asignado
+        # asignado
+        # postergado
+        # resuelto
+
+    Esquema del escenario: Resolver un reporte
+        Dado un reporte ciudadano del problema "<descripcion_problema>"
+        Y su criterio de clasificacion es mayor que el 80% para cualquier departamento
+        Y el reporte tiene el estado "<estado>"
+        #asignado o postergado
+        Cuando los recursos del departamento asignado sean necesarios para resolver el problema
+        Entonces el estado del reporte cambia a "resuelto"
+        Y el departamento registra la evidencia de la solucion del reporte.
+        Ejemplos:
+            | descripcion_problema     | estado    |
+            | Bache en la calle        | asignado  |
+            | Luminaria pública dañada | postergado|
+
+    Escenario: Postergar reporte
+        Dado un reporte ciudadano del problema "descripcion_problema"
+        Y su criterio de clasificacion es mayor que el 80% para cualquier departamento
+        Cuando los recursos del departamento asignado no sean suficientes para resolver el problema
+        Entonces el estado del reporte cambia a "postergado"
 
   #Estados de los reportes
   #Clasificando
