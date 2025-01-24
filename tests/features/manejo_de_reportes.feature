@@ -12,30 +12,35 @@ Característica: Manejar los reportes ciudadanos
         # postergado
         # resuelto
 
-    Esquema del escenario: Resolver un reporte
-        Dado un reporte ciudadano "id_reporte" del problema "<descripcion_problema>"
-        Y su nivel de confianza de clasificacion es mayor que el 80% para cualquier departamento
-        Y el reporte tiene el estado "<estado_reporte>"
-        #asignado o postergado
-        #Cuando los recursos del departamento asignado sean necesarios para resolver el problema
-        Cuando la prioridad del reporte sea la mas alta del conjunto de reportes no atendidos
-        Entonces el estado del reporte cambia a "resuelto"
-        Y el departamento debe registrar la evidencia de la solucion del reporte.
-        Ejemplos:
-            | descripcion_problema     | estado_reporte    |
-            | Bache en la calle        | asignado          |
-            | Luminaria pública dañada | postergado        |
+    Escenario: Resolver un nuevo reporte
+        Dado un reporte ciudadano "R001" del problema "Luminaria pública dañada" llega al "SIAC"
+        Y el reporte ha sido asignado automaticamente al departamento "EPMMOP" por tener un nivel de confianza mayor que el 80%
+        Y el reporte tiene el estado "asignado"
+        Cuando el departamento asignado atienda el reporte con mayor prioridad
+        Entonces el estado del reporte atendido cambia a "resuelto"
+        Y el departamento debe registrar la evidencia "foco quemado ha sido cambiado" de la solucion del reporte.
+        Y el estado del resto de reportes no atendidos cambia a "postergado"
 
-    Escenario: Postergar reporte
-        Dado un reporte ciudadano "id_reporte" del problema "descripcion_problema"
-        Y su nivel de confianza de clasificacion es mayor que el 80% para cualquier departamento
-        #Cuando los recursos del departamento asignado no sean suficientes para resolver el problema
-        Cuando la prioridad del reporte no sea la mas alta del conjunto de reportes no atendidos
-        Entonces el estado del reporte cambia a "postergado"
+#    Escenario: Postergar reporte
+#        Dado un reporte ciudadano "id_reporte" del problema "descripcion_problema"
+#        #Y su nivel de confianza de clasificacion es mayor que el 80% para cualquier departamento
+#        Y el reporte es asignado al departamento "nombre_departamento" por tener un nivel de confianza mayor que el 80%
+#        #Cuando los recursos del departamento asignado no sean suficientes para resolver el problema
+#        Cuando la prioridad del reporte no sea la mas alta del conjunto de reportes no atendidos
+#        Entonces el estado del reporte cambia a "postergado"
+
+    Escenario: Resolver un reporte postergado
+        Dado un reporte ciudadano "R002" del problema "Bache en la calle" asignado al departamento "EPMMOP"
+        Y el reporte tiene el estado "postergado"
+        Cuando el departamento asignado atienda el reporte con mayor prioridad
+        Entonces el estado del reporte atendido cambia a "resuelto"
+        Y el departamento debe registrar la evidencia "se ha rellenado el bache" de la solucion del reporte.
+        Y el estado del resto de reportes no atendidos cambia a "postergado"
+
 
     Escenario: Asignacion manual
-        Dado un reporte ciudadano "id_reporte" del problema "descripcion_problema"
-        Y su nivel de confianza de clasificacion es menor que el 80% para cualquier departamento
-        Cuando se realice una clasificacion manual al departamento "nombre_departamento"
+        Dado un reporte ciudadano "R003" del problema "consultar lugar de votacion" llega al "SIAC"
+        Y no ha sido asignado a ningun departamento
+        Cuando se realice una clasificacion manual al departamento "EPMMOP"
         Entonces el estado del reporte cambia a "asignado"
         Y se añaden los nuevos criterios de clasificación "criterio1, criterio2, criterio3"
