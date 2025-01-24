@@ -17,7 +17,8 @@ Característica: Manejar los reportes ciudadanos
         Y su nivel de confianza de clasificacion es mayor que el 80% para cualquier departamento
         Y el reporte tiene el estado "<estado_reporte>"
         #asignado o postergado
-        Cuando los recursos del departamento asignado sean necesarios para resolver el problema
+        #Cuando los recursos del departamento asignado sean necesarios para resolver el problema
+        Cuando la prioridad del reporte sea la mas alta del conjunto de reportes no atendidos
         Entonces el estado del reporte cambia a "resuelto"
         Y el departamento debe registrar la evidencia de la solucion del reporte.
         Ejemplos:
@@ -28,7 +29,8 @@ Característica: Manejar los reportes ciudadanos
     Escenario: Postergar reporte
         Dado un reporte ciudadano "id_reporte" del problema "descripcion_problema"
         Y su nivel de confianza de clasificacion es mayor que el 80% para cualquier departamento
-        Cuando los recursos del departamento asignado no sean suficientes para resolver el problema
+        #Cuando los recursos del departamento asignado no sean suficientes para resolver el problema
+        Cuando la prioridad del reporte no sea la mas alta del conjunto de reportes no atendidos
         Entonces el estado del reporte cambia a "postergado"
 
     Escenario: Asignacion manual
