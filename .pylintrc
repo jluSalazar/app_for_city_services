@@ -59,13 +59,7 @@ disable=missing-docstring,            ; Docstrings obligatorios para PEP8
         too-many-arguments            ; Evitar advertencias en funciones complejas
 
 [IMPORTS]
-# Desactiva el uso de imports con comodines (*)
-allow-wildcard-with-all=no
 
-# Orden de imports según PEP8
-known-standard-library=sys,os,json
-known-third-party=numpy,pandas
-known-local-folder=src
 
 [STRING]
 # Consistencia en las comillas
