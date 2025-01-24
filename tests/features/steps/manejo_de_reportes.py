@@ -4,32 +4,39 @@ utilizando Behave.
 """
 from behave import step
 
-from app.models import Departamento
+from app.Reporte import Reporte
+from app.Siac import Siac
+from app.Departamento import Departamento
 
 
 #use_step_matcher("re")
 
 
-@step('un reporte ciudadano "{id_reporte}" del problema "{descripcion_problema}"')
+@step('un reporte ciudadano "{id_reporte}" del problema "{descripcion_problema}" llega al "SIAC"')
 def step_impl(context, id_reporte, descripcion_problema):
     """
+        :type descripcion_problema: str
         :type id_reporte: str
         :type context: behave.runner.Context
-        :type descripcion_problema: str
    """
     context.reporte = Reporte(id_reporte, descripcion_problema)
+    context.siac = Siac() #Controlador de reportes
+    context.siac.agregar_nuevo_reporte_no_asignado(context.reporte) #Variable reportes_no_asignados
 
-    assert context.reporte.obtener_id == id_reporte
+    assert context.reporte in context.siac.obtener_reportes_no_asignados()
 
 
-@step("su nivel de confianza de clasificacion es mayor que el 80% para cualquier departamento")
-def step_impl(context):
+@step('el reporte ha sido asignado automaticamente al departamento "{nombre_departamento}" por tener un nivel de confianza mayor que el 80%')
+def step_impl(context, nombre_departamento):
     """
+    :type nombre_departamento: str
     :type context: behave.runner.Context
     """
-    context.reporte.clasificar()
-    context.departamento = context.reporte.obtener_departamento_asignado()
-    assert 80 <= context.reporte.obtener_nivel_confianza
+    context.departamento = Departamento(nombre_departamento)
+    # Clasifica el reporte automáticamente y lo anade a la lista de reportes del departamento. actualiza estado reporte
+    context.siac.asignar_automaticamente_reporte_a_departamento()
+
+    assert context.reporte in context.departamento.obtener_reportes()
 
 
 @step('el reporte tiene el estado "{estado_reporte}"')
@@ -41,56 +48,77 @@ def step_impl(context, estado_reporte):
     assert estado_reporte == context.reporte.obtener_estado()
 
 
-@step("los recursos del departamento asignado sean necesarios para resolver el problema")
+@step("el departamento asignado atienda el reporte con mayor prioridad")
 def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    assert context.departamento.tiene_recursos_disponibles()
+    assert context.departamento.atender_reporte_mayor_prioridad() #cambiar esta de reporte en funcion
 
 
-@step('el estado del reporte cambia a "{estado_reporte}"')
+@step('el estado del reporte atendido cambia a "{estado_reporte}"')
 def step_impl(context, estado_reporte):
     """
     :type estado_reporte: str
     :type context: behave.runner.Context
     """
-    context.reporte.cambiar_estado(estado_reporte)
     assert estado_reporte == context.reporte.obtener_estado()
 
 
-@step("el departamento debe registrar la evidencia de la solucion del reporte.")
+@step('el departamento debe registrar la evidencia "{evidencia}" de la solucion del reporte.')
+def step_impl(context, evidencia):
+    """
+    :type evidencia: str
+    :type context: behave.runner.Context
+    """
+    context.departamento.registrar_evidencia(context.reporte, evidencia)
+    assert context.reporte.obtener_evidencia().notEquals("")
+
+
+@step('el estado del resto de reportes no atendidos cambia a "postergado"')
 def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.departamento.registrar_evidencia(context.reporte)
-    assert context.reporte.obtener_evidencia() is not None
+    assert any(context.reporte.obtener_estado() == "postergado" for reporte in context.departamento.obtener_reportes())
 
 
-@step("los recursos del departamento asignado no sean suficientes para resolver el problema")
+@step('un reporte ciudadano "{id_reporte}" del problema "{descripcion_problema}" asignado al departamento "{nombre_departamento}"')
+def step_impl(context, id_reporte, descripcion_problema, nombre_departamento):
+    """
+        :type nombre_departamento: str
+        :type descripcion_problema: str
+        :type id_reporte: str
+        :type context: behave.runner.Context
+   """
+    context.reporte = Reporte(id_reporte, descripcion_problema)
+    context.departamento = Departamento(nombre_departamento)
+    context.departamento.agregar_reporte(context.reporte)
+
+    assert context.reporte in context.departamento.obtener_reportes()
+
+
+@step("no ha sido asignado a ningun departamento")
 def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    assert not context.departamento.tiene_recursos_disponibles()
+    context.siac.asignar_automaticamente_reporte_a_departamento()
+
+    assert context.reporte in context.siac.obtener_reportes_no_asignados()
 
 
-@step("su nivel de confianza de clasificacion es menor que el 80% para cualquier departamento")
-def step_impl(context):
+@step('se realice una clasificacion manual al departamento "{nombre_departamento}"')
+def step_impl(context, nombre_departamento):
     """
+    :type nombre_departamento: str
     :type context: behave.runner.Context
     """
+    context.departamento = Departamento(nombre_departamento)
+    #Cambiar estado del reporte a asignado
+    context.siac.asignar_manualmente_reporte_a_departamento(context.reporte, context.departamento)
 
-
-@step('se realice una clasificacion manual al departamento "nombre_departamento"')
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    context.reporte.clasificar()
-    context.departamento = context.reporte.obtener_departamento_asignado()
-    assert 80 > context.reporte.obtener_nivel_confianza
+    assert context.reporte in context.departamento.obtener_reportes()
 
 @step('se añaden los nuevos criterios de clasificación "{criterios}"')
 def step_impl(context,criterios):
@@ -102,9 +130,16 @@ def step_impl(context,criterios):
     lista_criterios = [criterio.strip() for criterio in criterios.split(",")]
 
     # Agrega los criterios al departamento
-    for criterio in lista_criterios:
-        context.departamento.agregar_criterios_clasificacion(criterio)
+    context.siac.agregar_criterios_clasificacion_por_departamento(context.departamento, lista_criterios)#Verificar repetidos
 
-    for criterio in lista_criterios:
-        assert criterio in context.departamento.obtener_criterios_clasificacion(), \
-            f"El criterio '{criterio}' no se añadió correctamente."
+    lista_criterios_departamento = context.siac.obtener_criterios_clasificacion_por_departamento(context.departamento)
+    assert all(criterio in lista_criterios_departamento for criterio in lista_criterios)
+
+
+
+@step('el estado del reporte cambia a "asignado"')
+def step_impl(context):
+    """
+    :type context: behave.runner.Context
+    """
+    assert "asignado" == context.reporte.obtener_estado()
