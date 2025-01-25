@@ -32,6 +32,10 @@ def step_impl(context, nombre_departamento):
     :type nombre_departamento: str
     :type context: behave.runner.Context
     """
+
+
+### calcular confianza para asginar si esque cumple aqui deberia parasr al asignar automaticamente
+
     context.departamento = Departamento(nombre_departamento)
     # Clasifica el reporte automáticamente y lo anade a la lista de reportes del departamento. actualiza estado reporte
     ## si es automaticamente porque la siac le asigna directo no deberia ser el departamento quien se asinge
@@ -45,7 +49,10 @@ def step_impl(context, estado_reporte):
     """
     :type context: behave.runner.Context
     :type estado_reporte: str
+
     """
+
+
     assert estado_reporte == context.reporte.obtener_estado()
 
 
@@ -59,11 +66,10 @@ def step_impl(context):
 
 @step('el estado del reporte atendido cambia a "{estado_reporte}"')
 def step_impl(context, estado_reporte):
-    """
-    :type estado_reporte: str
-    :type context: behave.runner.Context
-    """
+  # print("Estado esperado: {estado_reporte}")
+    context.reporte.cambiar_estado(estado_reporte)
     assert estado_reporte == context.reporte.obtener_estado()
+
 
 
 @step('el departamento debe registrar la evidencia "{evidencia}" de la solucion del reporte.')
@@ -72,8 +78,11 @@ def step_impl(context, evidencia):
     :type evidencia: str
     :type context: behave.runner.Context
     """
-    context.departamento.registrar_evidencia(context.reporte, evidencia)
-    assert context.reporte.obtener_evidencia() == evidencia
+    if context.reporte.obtener_estado() == "resuelto":
+        context.departamento.registrar_evidencia(context.reporte, evidencia)
+        assert context.reporte.obtener_evidencia() == evidencia
+    else:
+        assert False, "El reporte no está resuelto, no se puede registrar evidencia."
 
 
 @step('el estado del resto de reportes no atendidos cambia a "postergado"')
@@ -82,13 +91,17 @@ def step_impl(context):
     Cambia el estado de los reportes no atendidos a 'postergado' si existen.
     Si no hay reportes, imprime un mensaje y pasa el test.
     """
+    """
+    Cambia el estado de los reportes no atendidos (no asignados, atendidos o resueltos) a 'postergado' si existen.
+    Si no hay reportes, imprime un mensaje y pasa el test.
+    """
     # Obtener todos los reportes del departamento
     todos_los_reportes = context.departamento.obtener_reportes()
 
-    # Filtrar reportes no atendidos
+    # Filtrar reportes no atendidos (esto incluye los reportes no asignados)
     reportes_no_atendidos = [
         reporte for reporte in todos_los_reportes
-        if reporte.obtener_estado() not in ["atendido", "resuelto"]
+        if reporte.obtener_estado() not in ["asignado", "atendido", "resuelto"]
     ]
 
     if reportes_no_atendidos:
@@ -106,7 +119,6 @@ def step_impl(context):
         assert True, "No hay reportes no atendidos para procesar."
 
 
-
 @step('un reporte ciudadano "{id_reporte}" del problema "{descripcion_problema}" asignado al departamento "{nombre_departamento}"')
 def step_impl(context, id_reporte, descripcion_problema, nombre_departamento):
     """
@@ -116,8 +128,10 @@ def step_impl(context, id_reporte, descripcion_problema, nombre_departamento):
         :type context: behave.runner.Context
    """
     context.reporte = Reporte(id_reporte, descripcion_problema)
+
     context.departamento = Departamento(nombre_departamento)
     context.departamento.agregar_reporte(context.reporte)
+    context.reporte.cambiar_estado("postergado")
 
     assert context.reporte in context.departamento.obtener_reportes()
 

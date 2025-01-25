@@ -48,6 +48,9 @@ class Departamento:
         for reporte in self.__reportes[1:]:
             reporte.cambiar_estado("postergado")
 
+        # Asegurarse de postergar reportes no atendidos
+        self.postergar_reportes_no_atendidos()
+
         return True
 
     def registrar_evidencia(self, reporte, evidencia):

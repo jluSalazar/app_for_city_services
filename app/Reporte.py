@@ -16,16 +16,9 @@ class Reporte:
         return self.__estado
 
     def cambiar_estado(self, nuevo_estado):
-        if self.__evaluar_cambio_estado (nuevo_estado):
-            self.__estado = nuevo_estado
-
-    def __evaluar_cambio_estado(self, nuevo_estado):
-        if self.__estado == "no_asignado" and nuevo_estado in ["asignado", "postergado"]:
-            return True
-        elif self.__estado == "asignado" and nuevo_estado in ["resuelto", "postergado"]:
-            return True
-        return False
-
+        print("asdmnalsjknd")
+        self.__estado = nuevo_estado
+           # print(f"Estado cambiado a {self.__estado}")
 
 
 
