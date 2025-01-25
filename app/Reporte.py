@@ -20,14 +20,23 @@ class Reporte:
             self.__estado = nuevo_estado
 
     def __evaluar_cambio_estado(self, nuevo_estado):
-        if self.__estado == "no_asignado" and nuevo_estado == "asignado":
+        if self.__estado == "no_asignado" and nuevo_estado in ["asignado", "postergado"]:
             return True
-        elif self.__estado == "asignado"  and nuevo_estado == "resuelto":
+        elif self.__estado == "asignado" and nuevo_estado in ["resuelto", "postergado"]:
             return True
-        elif (self.__estado == "asignado")  and nuevo_estado == "postergado":
-            return True
-        else:
-            return False
+        return False
+
+
+
+
+        # if self.__estado == "no_asignado" and nuevo_estado == "asignado":
+        #     return True
+        # elif self.__estado == "asignado"  and nuevo_estado == "resuelto":
+        #     return True
+        # elif (self.__estado == "asignado")  and nuevo_estado == "postergado":
+        #     return True
+        # else:
+        #     return False
 
     def registrar_evidencia(self, evidencia):
         self.__evidencia = evidencia

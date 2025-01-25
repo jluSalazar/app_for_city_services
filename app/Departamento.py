@@ -74,3 +74,8 @@ class Departamento:
             for categoria in self.__palabras_clave_priorizacion[tipo]:
                 criterios.extend(self.__palabras_clave_priorizacion[tipo][categoria])
         return criterios
+
+    def postergar_reportes_no_atendidos(self):
+        for reporte in self.obtener_reportes():
+            if reporte.obtener_estado() != "atendido":
+                reporte.cambiar_estado("postergado")
