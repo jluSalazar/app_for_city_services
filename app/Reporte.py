@@ -4,32 +4,19 @@ class Reporte:
         self.__descripcion_problema = descripcion_problema
         self.__estado = "no_asignado"
         self.__evidencia = ""
-        self.__indice_prioridad = 1 #1-3
+        self.__indice_prioridad = 0
 
     def obtener_id(self):
         return self.__id_reporte
 
-    def obtener_descripcion(self):
-        return self.__descripcion_problema
-
     def obtener_estado(self):
         return self.__estado
 
-    def cambiar_estado(self, nuevo_estado):
-        print("asdmnalsjknd")
-        self.__estado = nuevo_estado
-           # print(f"Estado cambiado a {self.__estado}")
+    def cambiar_estado(self, estado):
+        self.__estado = estado
 
-
-
-        # if self.__estado == "no_asignado" and nuevo_estado == "asignado":
-        #     return True
-        # elif self.__estado == "asignado"  and nuevo_estado == "resuelto":
-        #     return True
-        # elif (self.__estado == "asignado")  and nuevo_estado == "postergado":
-        #     return True
-        # else:
-        #     return False
+    def obtener_descripcion(self):
+        return self.__descripcion_problema
 
     def registrar_evidencia(self, evidencia):
         self.__evidencia = evidencia
@@ -37,7 +24,7 @@ class Reporte:
     def obtener_evidencia(self):
         return self.__evidencia
 
-    def obtener_prioridad(self):
+    def obtener_indice_prioridad(self):
         return self.__indice_prioridad
 
     def establecer_indice_prioridad(self, keywords):
