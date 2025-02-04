@@ -55,6 +55,6 @@ El `Gestor de Departamento` es la entidad encargada de distribuir los reportes e
 - **Monitoreo del estado**: Actualiza el estado del reporte a medida que es atendido.
 
 ---
-A continuacion se presentan los steps finales implementados:
-
+A continuacion se presentan los steps finales implementados:\
+[Steps propuesta final](anexos.md#steps-propuesta-final)
 
