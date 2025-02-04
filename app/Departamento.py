@@ -23,6 +23,7 @@ class Departamento:
 
     def agregar_reporte(self, reporte):
         self.__reportes.append(reporte)
+        reporte.cambiar_estado("asignado")
 
     def obtener_reportes_asignados(self):
         return self.__reportes
@@ -42,3 +43,5 @@ class Departamento:
     def registrar_evidencia(self, reporte, evidencia):
         reporte.registrar_evidencia(evidencia)
 
+    def postergar_reporte(self, reporte):
+        reporte.cambiar_estado("postergado")
