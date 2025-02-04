@@ -1,10 +1,10 @@
-# **Validación del proceso de verificación del desarrollo de software usando BDD**
+# **Informe del proceso de verificación del desarrollo de software**
 
 ## **Carátula**
 - **Nombre del proyecto:** App For City Services
-- **Autor:** GR2SW
-- **Versión:** V-1.2.
-- **Revisión:** 01-feb-2025
+- **Autor:** Grupo 6
+- **Versión:** V-1.3.
+- **Revisión:** 04-feb-2025
 
 ---
 
