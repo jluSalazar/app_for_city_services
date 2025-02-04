@@ -1,6 +1,6 @@
 # Proyecto django
 
-# Creación del Repositorio en GitHub para la Aplicación en Django
+# Creación del repositorio en GitHub para la aplicación en Django
 
 ## 1. Configuración del repositorio
 
@@ -35,7 +35,7 @@ Durante la reunión del equipo, se establecieron estándares de programación pa
 
 ---
 
-## 3. Estrategia de Branching para trabajo colaborativo
+## 3. Estrategia de branching para trabajo colaborativo
 
 Para permitir un desarrollo estructurado y colaborativo, se implementó una estrategia de **branching**, estableciendo las siguientes reglas:
 
@@ -65,7 +65,7 @@ Para garantizar un proceso estructurado en la revisión y validación del códig
 
 ---
 
-## 5. Integración y Despliegue Continuo (CI/CD)
+## 5. Integración y despliegue continuo (CI/CD)
 
 Para automatizar el proceso de validación del código y asegurar un desarrollo ágil, se implementaron herramientas de **Integración y Despliegue Continuo (CI/CD)** a través de **GitHub Actions**:
 

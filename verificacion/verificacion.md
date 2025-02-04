@@ -1,8 +1,8 @@
-# **Validación del Proceso de Verificación del Desarrollo de Software Usando BDD**
+# **Validación del proceso de verificación del desarrollo de software usando BDD**
 
-## 1. **Contexto del Proyecto**
-- **Nombre del Proyecto:** App for City Services  
-- **Business Challenge:**  
+## 1. **Contexto del proyecto**
+- **Nombre del proyecto:** App for City Services  
+- **Business challenge:**  
   Desarrollar una aplicación que permita a los ciudadanos comunicarse con instituciones municipales para reportar problemas, recibir información local y participar en actividades comunitarias.  
 
 ---
@@ -22,7 +22,7 @@ para que otros ciudadanos puedan unirse a la actividad o evento.
 Como ciudadano,    
 quiero acceder al servicio 311    
 para registrar solicitudes o reportes sobre servicios municipales no relacionados con emergencias.
-4. **Monitorear las Solicitudes de Solución de Problemas**  
+4. **Monitorear las solicitudes de solución de problemas**  
 Como ciudadano,    
 quiero hacer un seguimiento de las solicitudes que he enviado sobre problemas,    
 para conocer el progreso y estado de las solicitudes.
@@ -52,7 +52,7 @@ De los features que se obtuvieron del Business Challenge solo se pudieron tomar 
 -El feature **3** es una instancia del feature **1** ya que no interesa el cómo se realiza la acción si no que importa qué se realiza.
 - La prioridad en que se presentan los features tambien es importante ya que se refleja el valor que entrega al negocio.
 
-### 2.3 **Features Corregidos**
+### 2.3 **Features corregidos**
 
 De esta forma, se presentan los *nuevos* features organizados por prioridad y manteniendo los **criterios de calidad** e **INVEST**:
 
@@ -92,11 +92,11 @@ De esta forma, se presentan los *nuevos* features organizados por prioridad y ma
 **para** confirmar mi asistencia y participar activamente en actividades comunitarias.
 
 
-## 3. **Estimación de Features**
-### 3.1. **Primera estimación de Features**
+## 3. **Estimación de features**
+### 3.1. **Primera estimación de features**
 La primera estimación fue por **story points fibonacci** basado en la *experiencia* de los miembros del grupo. Considerando el nivel de dificultad y el tiempo que tomaria completarlo. 
 De esta forma se obtuvo la siguiente tabla de estimación:
-#### Tabla de Estimación
+#### Tabla de estimación
 
 | **Feature**                               | **Estimación** |
 |-------------------------------------------|---------------:|
@@ -110,7 +110,7 @@ De esta forma se obtuvo la siguiente tabla de estimación:
 
 
 
-### 3.2. Analisis de la estimacion de los Features
+### 3.2. Analisis de la estimacion de los features
 Una estimación correcta debe ser independiente de las habilidades técnicas de los involucrados en el desarrollo.
 Por ello la estimación de cada feature se realizó en base a:  
 - **Complejidad**: Nivel de complejidad ciclomática que tiene el implementar el feature.  
@@ -118,7 +118,7 @@ Por ello la estimación de cada feature se realizó en base a:
 
 De igual manera, se utilizó la **Escala de Fibonacci** para realizar la estimación: `1, 2, 3, 5, 8, 13, 21, 34, 55`
 
-#### Tabla de Estimación
+#### Tabla de estimación
 | **Feature**                               | **Estimación** |
 |-------------------------------------------|---------------:|
 | Reportar problemas urbanos en la ciudad   | 2              |

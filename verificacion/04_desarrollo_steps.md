@@ -1,7 +1,7 @@
-# Desarrollo de Steps y modelos relacionados con los escenarios
+# Desarrollo de steps y modelos relacionados con los escenarios
 ### Fecha: 04 enero del 2025 - 22 enero del 2025
 
-## 1. Desarrollo en Paralelo a los Escenarios
+## 1. Desarrollo en paralelo a los escenarios
 
 El desarrollo de los **steps** se llevó a cabo de manera paralela a la definición de los escenarios en Gherkin. Esto permitió una integración ágil entre la especificación funcional y la implementación técnica, asegurando que cada escenario tuviera una ejecución clara dentro del sistema.
 
@@ -25,11 +25,11 @@ Se siguieron los siguientes pasos en el desarrollo:
 
 ---
 
-## 2. Desarrollo de los Modelos Necesarios
+## 2. Desarrollo de los modelos necesarios
 
 Para soportar la ejecución de los escenarios y steps, se implementaron los siguientes modelos dentro del sistema:
 
-### **2.1. Modelo Reporte**
+### **2.1. Modelo reporte**
 El modelo `Reporte` representa las incidencias reportadas por los ciudadanos y su estado en el flujo de gestión.
 
 **Atributos principales:**
@@ -38,14 +38,14 @@ El modelo `Reporte` representa las incidencias reportadas por los ciudadanos y s
 - `estado`: Estado actual del reporte (`no_asignado`, `asignado`, `postergado`, `resuelto`).
 - `evidencia`: Archivos o imágenes como prueba de resolución.
 
-### **2.2. Modelo Departamento**
+### **2.2. Modelo departamento**
 El modelo `Departamento` gestiona los equipos responsables de atender los reportes asignados.
 
 **Atributos principales:**
 - `nombre`: Nombre del departamento (ej. EPMMOP, Bomberos, Policía).
 - `descripcion`: Descripcion detallada del departamento.
 
-### **2.3. Modelo Gestor de Departamento**
+### **2.3. Modelo gestor de departamento**
 El `Gestor de Departamento` es la entidad encargada de distribuir los reportes entre los departamentos correspondientes.
 
 **Funciones principales:**

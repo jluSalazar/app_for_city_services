@@ -1,4 +1,4 @@
-# Verificación de Features
+# Verificación de Features   Rango de fechas: 10 y 11 de diciembre de 2024.
 ## **1. Primera propuesta de Features**
 Cada uno de los *squads* tuvo la tarea de definir 7 features los cuales deben ser derivados del análisis del *business challenge* del proyecto mediante la **metodología de análisis documental**, la cual consiste en extraer información relevante de documentos con el fin de interpretar su contenido, encontrar datos y generar conocimiento. 
 Con base en la información recopilada se identificaron los siguientes Features:
