@@ -1,4 +1,4 @@
-# **Estimación de Features**   Rango de fechas: 17 y 18 de diciembre de 2024.
+# **Estimación de features**   Rango de fechas: 17 y 18 de diciembre de 2024.
 La estimación de los Features se la realizó de la siguiente forma:
 1. En el tablero Kanban, una vez definidos los Features, por cada uno de ellos se establece una estimación.
 2. La estimación se evalua y se itera si es necesario.

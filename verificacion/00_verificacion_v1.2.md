@@ -21,15 +21,15 @@ Requerimientos y análisis\
 [2. Estimación de Features](02_estimacion_features.md)\
 [3. Desarrollo de Features](03_desarrollo_feature.md)
 
-Diseño 
+Diseño \
 [1.desarrollo_steps](04_desarrollo_steps.md)
 
-Construccion 
+Construccion \
 [1.Creacion del repositorio](05_creacion_repositorio.md)\
 [2.Implementacion](06_implementacion.md)
 
 
-Pruebas
+Pruebas\
 [1.Pruebas](07_pruebas.md)
 
  

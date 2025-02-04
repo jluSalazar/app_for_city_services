@@ -1,5 +1,5 @@
-# Verificación de Features   Rango de fechas: 10 y 11 de diciembre de 2024.
-## **1. Primera propuesta de Features**
+# Verificación de features   Rango de fechas: 10 y 11 de diciembre de 2024.
+## **1. Primera propuesta de features**
 Cada uno de los *squads* tuvo la tarea de definir 7 features los cuales deben ser derivados del análisis del *business challenge* del proyecto mediante la **metodología de análisis documental**, la cual consiste en extraer información relevante de documentos con el fin de interpretar su contenido, encontrar datos y generar conocimiento. 
 Con base en la información recopilada se identificaron los siguientes Features:
 
@@ -56,7 +56,7 @@ Una vez definida la primera propuesta de los features se evaluaron los mismos ut
 
 ---
 
-## **2. Segunda propuesta de Features**
+## **2. Segunda propuesta de features**
 Una vez evaluados los Features de la primera propuesta se establecen nuevos features con mejoras en calidad y priorización. 
 La metodología usada fue el contraste de los Features mediante un **Kanban** entre los grupos de trabajo.
 1. Se estableció un tablero Kanban con columnas representando cada uno de los squads participantes.
@@ -118,7 +118,7 @@ Luego de definir la segunda propuesta de los Features (y la propuesta final) se 
 | 6 | Suscribirse a canales de interés | ✅ | ✅ | ✅ | 
 | 7 | Reservar asistencia a eventos comunitarios | ✅ | ✅ | ✅ |
 ---
-## 3. Asignación de Features
+## 3. Asignación de features
 Cada uno de estos Features se han asignado a los squads. En el caso del grupo 6 se le asignó el Feature 2. Manejar y gestionar problemas urbanos.
 
 ---
